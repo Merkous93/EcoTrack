@@ -1,0 +1,157 @@
+#!/bin/bash
+
+# Step 1: Clone the repository
+git clone https://github.com/Merkous93/EcoTrack.git
+cd EcoTrack
+
+# Step 2: Create necessary directories
+mkdir -p src/components src/services src/styles public tests docs/screenshots
+
+# Step 3: Create core files and add initial content
+
+# Create README.md
+cat <<EOL > README.md
+# **EcoTrack**
+
+EcoTrack is a carbon footprint calculator app designed to help individuals and businesses track and reduce their carbon emissions based on their daily activities.
+
+## **Table of Contents**
+
+- [Introduction](#introduction)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Features](#features)
+- [Screenshots](#screenshots)
+- [Technologies Used](#technologies-used)
+- [Challenges](#challenges)
+- [Contributing](#contributing)
+- [License](#license)
+
+## **Introduction**
+
+EcoTrack helps users calculate their carbon footprint based on inputted daily activities, such as driving, electricity usage, and other personal habits. The app provides personalized recommendations to help users reduce their carbon emissions and track their progress over time.
+
+## **Installation**
+
+Follow these steps to set up the project locally:
+
+1. **Clone the repository:**
+
+   \`\`\`bash
+   git clone https://github.com/Merkous93/EcoTrack.git
+   cd EcoTrack
+   \`\`\`
+
+2. **Install the dependencies:**
+
+   \`\`\`bash
+   npm install
+   \`\`\`
+
+3. **Start the application:**
+
+   \`\`\`bash
+   npm start
+   \`\`\`
+
+## **Usage**
+
+After starting the application, use the provided interface to enter your daily activities. The app will calculate your carbon footprint and offer suggestions on how to reduce it. The user can view their historical data and monitor their progress over time.
+
+## **Features**
+
+- User-friendly form to input daily activities and energy usage
+- Real-time carbon footprint calculation based on user input
+- Personalized tips and suggestions for reducing carbon emissions
+- Historical data tracking for monitoring progress
+- Data visualization to display carbon footprint trends over time
+
+## **Screenshots**
+
+![User Input Form](docs/screenshots/user-input-form.png)
+*Figure 1: User Input Form*
+
+![Carbon Footprint Results](docs/screenshots/carbon-footprint-results.png)
+*Figure 2: Carbon Footprint Calculation Results*
+
+## **Technologies Used**
+
+- **Front-End:** React.js for building a dynamic and responsive user interface
+- **Back-End:** Node.js with Express for handling API requests and server-side logic
+- **Database:** MongoDB for storing user data and carbon footprint calculations
+- **APIs:** Integration with third-party APIs for retrieving real-time emission factors
+- **Testing:** Jest and Mocha for unit and integration testing
+
+## **Challenges**
+
+- **Technical Challenges:** Setting up the development environment and integrating multiple libraries caused initial delays. Optimizing the API for performance was also challenging, requiring efficient data handling and caching.
+- **Non-Technical Challenges:** Balancing time between the project and other commitments was difficult. Improved time management strategies and setting clear daily goals helped mitigate this challenge.
+
+## **Contributing**
+
+Contributions are welcome! To contribute:
+
+1. Fork the repository.
+2. Create a new branch (\`git checkout -b feature/YourFeature\`).
+3. Make your changes and commit them (\`git commit -m 'Add YourFeature'\`).
+4. Push to the branch (\`git push origin feature/YourFeature\`).
+5. Open a Pull Request.  
+
+## **License**
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+EOL
+
+# Create .gitignore file
+cat <<EOL > .gitignore
+node_modules/
+.env
+.DS_Store
+*.log
+EOL
+
+# Create a sample index.js file in src
+cat <<EOL > src/index.js
+console.log('Welcome to EcoTrack - Start building your app here!');
+EOL
+
+# Create a sample test file in tests
+cat <<EOL > tests/api.test.js
+const request = require('supertest');
+const app = require('../src/index'); // Adjust based on your actual server file
+
+describe('GET /api/carbon_footprint/calculate', () => {
+  it('should return a carbon footprint calculation', async () => {
+    const response = await request(app).get('/api/carbon_footprint/calculate');
+    expect(response.statusCode).toBe(200);
+    // Add more assertions here based on your API response structure
+  });
+});
+EOL
+
+# Create a basic HTML file in public directory
+cat <<EOL > public/index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script src="../src/index.js"></script>
+</body>
+</html>
+EOL
+
+# Step 4: Initialize npm and install basic dependencies
+npm init -y
+npm install express mongoose react react-dom jest supertest --save
+
+# Step 5: Initial commit to GitHub
+git add .
+git commit -m "Initial project setup with README.md and basic structure"
+git push origin main
+
+echo "Project setup complete! Your repository is now initialized and ready for development."
